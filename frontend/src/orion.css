@@ -1,0 +1,265 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+p{
+    color: white;
+}
+
+body{
+    
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 745px; 
+    padding: 5px 50px 5px 50px;
+    background-color:rgb(158, 156, 156);
+    position: relative;
+    
+}
+.fayda{
+    border: 2px solid    white;
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color: rgb(204, 134, 3) ;
+}
+
+.fayda-header p {
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10px;
+    border-bottom: 2px solid white;
+}
+
+.fayda-content{
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-bar{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.takim-adi{
+    margin-left: 10px;
+}
+
+.left-side{
+    width: 49%;
+}
+
+.right-side{   
+    width: 50%;
+    margin-left: 20px;
+}
+
+.roket-gyro{
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 100%;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: rgb(204, 134, 3);
+}
+
+.sensor-verileri{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    height: 250px;
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: rgb(204, 134, 3);
+    align-items: center;
+}
+
+.sensor-verileri-header{
+    font-size: 22px;
+    height: 15%;
+    width: 100%;
+    margin: 0 15px;
+    border-bottom: 1px solid white;
+    font-weight: bold;
+    color: green;
+}
+
+.info-box{
+    display: flex;
+}
+
+.sensor-verileri .item-info{
+    min-width: 25%;
+    text-align: center;
+    padding: 5px;
+    margin: 10px 5px;
+    border: 2px solid white;
+    display: flex;
+    font-size: 21px;
+    height: 50px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center ;
+}
+
+.item-content-container .item-info-content{
+    padding-left:  7px;
+}
+
+.item-content-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    height: 75%;
+}
+
+.gyro-header{
+    font-size: 20px;
+    padding: 4px;
+    padding-top: 6px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid white;
+    width: 90%;
+    text-align: center;
+    text-align: left;
+    font-size: 22px;
+    font-weight: bold;
+    color: green;
+}
+
+.roket-gyro-content{
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    width: 100%;
+}
+
+
+
+
+.tetikleme-header{
+    font-size: 20px;
+    padding-left: 4x;
+    padding-right: 4px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    width: 90%;
+    text-align: center;
+    text-align: left;
+    font-size: 22px;
+    font-weight: bold;
+    color: green;
+}
+
+.tetikleme-content{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.tetikleme-durumu{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: rgb(204, 134, 3);
+    
+}
+
+.tetikleme-tablosu{
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.tetikleme-tablosu table{
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    text-align: center; 
+}
+
+.tetikleme-tablosu table td,th{
+    border: 1px solid white;
+    border-bottom: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+    padding: 8px;
+}
+
+.nantrigger{
+    background-color: rgb(184, 17, 17);
+}
+
+.trigger{
+    background-color: green;
+}
+
+
+.roket-konum{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    padding: 10px;
+    height: 470px;
+    border-radius: 10px;
+    background-color: rgb(204, 134, 3);
+}
+
+.roket-konum-header{
+    font-size: 20px;
+    padding: 4px;
+    padding-top: 6px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid white;
+    width: 90%;
+    text-align: center;
+    text-align: left;
+    font-size: 22px;
+    font-weight: bold;
+    color: green;
+}
+
+.roket-konum-content{
+    height: 100%;
+}
+
+.GPS{
+    width: 100%;
+    height: 100%;
+}
+
+
+.saat{
+    position: absolute;
+    display: flex;
+    font-size: 25px;
+    top: 10px;
+    right: 60px;
+    
+}
+
+.saat-deger{
+    padding-left: 5px;
+    color: green;
+    font-weight: bold;
+}
+.saat p{
+    color: green;
+    font-weight: bold;
+}
