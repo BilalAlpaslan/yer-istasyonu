@@ -6,6 +6,12 @@ export const data = entity([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
 export const state = entity(0)
 export const map = entity([0, 0])
 export const count = entity(0)
+export const ports = entity([])
+export const startEntity = entity(false)
+
+export const setStart = (value) => {
+    startEntity.set(value)
+}
 
 export const chatConnect = () => {
     if (channel.get()) console.log("channel var")
@@ -36,14 +42,41 @@ export const chatConnect = () => {
         } else {
             console.log("[close] Connection died");
         }
-        chatConnect()
+        if (startEntity.get()) chatConnect()
     }
 
     ws.onerror = function (error) {
         console.log("[error] ", error.message);
     };
 
+}
 
+export const disconnect = () => {
+    let ws = channel.get()
+    setStart(false)
+    console.log("bağlantı kesildi")
+    ws.send("disconnect")
+    ws.close()
+}
 
+export const getPorts = () => {
+    fetch("http://localhost:8001/ports", {
+        method: "GET"
+    })
+        .then(res => res.json())
+        .then(data => {
+            ports.set(['null',...data])
+        })
+}
 
+export const connectPorts = (port1 = 'null', port2 = 'null', port3 = 'null') => {
+    fetch("http://localhost:8001/connect/" + port1 + "/" + port2 + "/" + port3, {
+        method: "GET"
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            console.log("bağlantı kuruldu")
+            setStart(true)
+        })
 }
