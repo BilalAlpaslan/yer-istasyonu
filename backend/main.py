@@ -1,19 +1,27 @@
 import time
+
 import serial
-from serial.tools import list_ports
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
-
+from fastapi.middleware.cors import CORSMiddleware
 from ser import convert_to_bytes
-
+from serial.tools import list_ports
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 Serial1: serial.Serial = None
 Serial2: serial.Serial = None
 Serial3: serial.Serial = None
 
 serial1_prev = '0,0,0,0,0,0,0,0,0,0'
-serial2_prev = '0,0,0,0,0,0,0,0,0'
+serial2_prev = '0,0,0,0,0,0,0,0,0,0'
 
 
 counter = -1
@@ -40,9 +48,8 @@ def get_ports():
 @app.get("/connect/{port1}/{port2}/{port3}")
 def connect(port1: str, port2: str, port3: str):
     global Serial1, Serial2, Serial3
-    if port1 == 'null':
-        return {"message": "port1 is cannot be null"}
-    Serial1 = serial.Serial(port1, 9600, timeout=0.1)
+    if port1 != 'null':
+        Serial1 = serial.Serial(port1, 9600, timeout=0.1)
     if port2 != 'null':
         Serial2 = serial.Serial(port2, 9600, timeout=0.1)
     if port3 != 'null':
@@ -113,8 +120,7 @@ if __name__ == '__main__':
     import uvicorn
     uvicorn.run(
         "main:app",
-        # workers=1,
-        # host="localhost",
+        # workers=4,
         port=8001,
         reload=True,
     )
