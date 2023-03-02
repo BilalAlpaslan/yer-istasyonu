@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import { useEntity } from "simpler-state";
+import React, { useEffect } from "react";
 import Map from "./map";
 import Model from "./model";
-import { chatConnect, data, map, count } from "./soc";
+import { chatConnect, data, map, count, getPorts, ports, disconnect, connectPorts, setStart, startEntity } from "./soc";
 
 
 
@@ -10,15 +9,52 @@ export default function App() {
   const arr = data.use()
   const mapArr = map.use()
   const c = count.use()
+  const portsArr = ports.use()
+  const start = startEntity.use()
+
+
+  const connect = () => {
+    if (start) {
+      disconnect()
+    } else {
+      let ports1 = document.getElementById("ports").value
+      let ports2 = document.getElementById("ports2").value
+      let ports3 = document.getElementById("ports3").value
+      connectPorts(ports1, ports2, ports3)
+    }
+  }
 
   useEffect(() => {
-    chatConnect();
-  }, []);
+    if (start) { chatConnect(); }
+  }, [start]);
 
   return (
     <>
       <div className={"takim-adi"}>
-        <h1 style={{ textAlign: "center", marginBottom: "20px", color: "#0d2e56", fontWeight: "900" }}>Mahir Roket Takımı Yer İstasyonu</h1>
+        <h1 style={{ textAlign: "center", marginBottom: "20px", color: "#0d2e56", fontWeight: "900" }}>MTT-SİPAHİ Takımı Yer İstasyonu</h1>
+        <button onClick={() => getPorts()}>+</button>
+        <select name="ports" id="ports" onChange={(e) => console.log(e.target.value)}>
+          {portsArr.map((port, index) => {
+            return <option value={port} key={index}>
+              {port}
+            </option>
+          })}
+        </select>
+        <select name="ports2" id="ports2" onChange={(e) => console.log(e.target.value)}>
+          {portsArr.map((port, index) => {
+            return <option value={port} key={index}>
+              {port}
+            </option>
+          })}
+        </select>
+        <select name="ports3" id="ports3" onChange={(e) => console.log(e.target.value)}>
+          {portsArr.map((port, index) => {
+            return <option value={port} key={index}>
+              {port}
+            </option>
+          })}
+        </select>
+        <button onClick={() => connect()}>{start ? "Bağlantıyı Kes" : "Bağlantıyı Kur"}</button>
       </div>
       <div className={"top-bar"}>
         <div className={"info-item"}>
@@ -60,7 +96,11 @@ export default function App() {
               <p className={"first"}>{c}</p>
             </div>
             <div className={"saat"}>
-              {arr[arr.length - 1][1]}
+              {/* {arr[arr.length - 1][1]} */}
+              {
+                // get js time
+                new Date().toLocaleTimeString()
+              }
             </div>
           </div>
         </div>
@@ -69,7 +109,7 @@ export default function App() {
             <p>İrtifa</p>
           </div>
           <div className={"info-item-content"}>
-            <p className={"first"}>{arr[arr.length - 1][2]}</p>
+            <p className={"first"}>{arr[arr.length - 1][5]}</p>
           </div>
         </div>
         <div className={"info-item"}>
@@ -77,7 +117,7 @@ export default function App() {
             <p>Sicaklik</p>
           </div>
           <div className={"info-item-content"}>
-            <p className={"first"}>{arr[arr.length - 1][9]}</p>
+            <p className={"first"}>{arr[arr.length - 1][3]}</p>
           </div>
         </div>
       </div>
@@ -97,12 +137,12 @@ export default function App() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe> */}
-          {/* <Map/> */}
+          <Map/>
         </div>
         <div className={"info-item roket-gyro"} >
           <p>Roket Eksenleri</p>
           <div className={"roket-gyro-content"} style={{ color: "white" }}>ROKET GYRO</div>
-          <div style={{ color: "white" }}>x:{arr[arr.length - 1][3]} / y:{arr[arr.length - 1][4]} / z:{arr[arr.length - 1][5]}</div>
+          <div style={{ color: "white" }}>x:{arr[arr.length - 1][1]} / y:{arr[arr.length - 1][2]}</div>
           {/* <Model  x={arr[arr.length -1][3]} y={arr[arr.length -1][4]} z={arr[arr.length -1][5]} 
           style={{ maxWidth: "100px", maxHeight: "100px" }}
           /> */}

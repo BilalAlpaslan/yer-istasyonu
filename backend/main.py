@@ -13,7 +13,7 @@ app.add_middleware(
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
 Serial1: serial.Serial = None
@@ -49,11 +49,11 @@ def get_ports():
 def connect(port1: str, port2: str, port3: str):
     global Serial1, Serial2, Serial3
     if port1 != 'null':
-        Serial1 = serial.Serial(port1, 9600, timeout=0.1)
+        Serial1 = serial.Serial(port1, 9600, timeout=0.4)
     if port2 != 'null':
-        Serial2 = serial.Serial(port2, 9600, timeout=0.1)
+        Serial2 = serial.Serial(port2, 9600, timeout=0.3)
     if port3 != 'null':
-        Serial3 = serial.Serial(port3, 9600, timeout=0.1)
+        Serial3 = serial.Serial(port3, 9600, timeout=0.3)
     return {
         "message": f"connected to ports {port1}, {port2}, {port3}",
         "port1": port1, "port2": port2, "port3": port3
@@ -111,7 +111,7 @@ async def websocket_endpoint(websocket: WebSocket):
                         float(veriii[5]),
                         durum
                     ))
-            time.sleep(1)
+            time.sleep(0.5)
 
     except WebSocketDisconnect as e:
         print("disconnect", e)
