@@ -27,8 +27,8 @@ function Map() {
             >
                 <Marker
                     position={{
-                        lat: parseFloat(data[0]),
-                        lng: parseFloat(data[1])
+                        lat: parseFloat(40.9009543),
+                        lng: parseFloat(29.1484013)
                     }}
                 />
             </GoogleMap>
